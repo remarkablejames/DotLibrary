@@ -18,9 +18,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return entities;
     }
 
-    public Task<T> GetByIdAsync(Guid id)
+    public async Task<T> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var entity = await _context.Set<T>().FindAsync(id);
+        return entity;
     }
 
     public Task<T> AddAsync(T entity)

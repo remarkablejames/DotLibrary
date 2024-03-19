@@ -17,6 +17,7 @@ public static class PersistenceServicesRegistration
         
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<IBookRepository, BookRepository>();
+        services.AddScoped<IPublisherRepository, PublisherRepository>();
         return services;
     }
 }
