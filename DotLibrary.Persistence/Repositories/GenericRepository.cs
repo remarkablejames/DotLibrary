@@ -1,12 +1,21 @@
 using DotLibrary.Application.Contracts.Persistence;
+using DotLibrary.Persistence.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DotLibrary.Persistence.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    public Task<IReadOnlyList<T>> GetAllAsync()
+    private readonly DotLibraryDbContext _context;
+
+    public GenericRepository(DotLibraryDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+    public async Task<IReadOnlyList<T>> GetAllAsync()
+    {
+        var entities = await _context.Set<T>().ToListAsync();
+        return entities;
     }
 
     public Task<T> GetByIdAsync(Guid id)
