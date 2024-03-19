@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLibrary.Domain", "DotLib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLibrary.Application", "DotLibrary.Application\DotLibrary.Application.csproj", "{067CCC07-DCAA-429B-9ADE-0D359C689C2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotLibrary.Persistence", "DotLibrary.Persistence\DotLibrary.Persistence.csproj", "{8B9C354E-93AE-4181-8545-77B8DCC6F6AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{5BD1CC3C-6BC7-4FC1-AC92-EAAF75577C26} = {95071053-2374-442B-9FE6-0B022AA3871F}
 		{ECF663AB-6BAA-40DE-8B4B-FDDDABFA8F08} = {AB8B220A-98DA-4A94-A0F6-21C01B11DEB0}
 		{067CCC07-DCAA-429B-9ADE-0D359C689C2F} = {AB8B220A-98DA-4A94-A0F6-21C01B11DEB0}
+		{8B9C354E-93AE-4181-8545-77B8DCC6F6AA} = {5BD1CC3C-6BC7-4FC1-AC92-EAAF75577C26}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ECF663AB-6BAA-40DE-8B4B-FDDDABFA8F08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -35,5 +38,9 @@ Global
 		{067CCC07-DCAA-429B-9ADE-0D359C689C2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{067CCC07-DCAA-429B-9ADE-0D359C689C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{067CCC07-DCAA-429B-9ADE-0D359C689C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B9C354E-93AE-4181-8545-77B8DCC6F6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9C354E-93AE-4181-8545-77B8DCC6F6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9C354E-93AE-4181-8545-77B8DCC6F6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9C354E-93AE-4181-8545-77B8DCC6F6AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

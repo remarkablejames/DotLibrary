@@ -2,16 +2,16 @@ namespace DotLibrary.Domain;
 
 public class Book
 {
-    public int ID { get; set; }
-    public string Title { get; set; }
-    public string ISBN { get; set; }
+    public int Id { get; set; }
+    public string Title { get; set; } = String.Empty;
+    public string ISBN { get; set; } = String.Empty;
     // Foreign Key property
-    public int PublisherID { get; set; }
+    public int PublisherId { get; set; }
     
     // Navigation property to represent the relationship
-    public Publisher Publisher { get; set; }
+    public Publisher Publisher { get; set; } = new Publisher();
     
-    public List<BookAuthor> BookAuthors { get; set; }
-    public List<BookCategory> BookCategories { get; set; }
+    public List<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
+    public List<BookCategory> BookCategories { get; set; } = new List<BookCategory>();
     
 }

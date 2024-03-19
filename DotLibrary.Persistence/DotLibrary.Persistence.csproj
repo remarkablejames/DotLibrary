@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-preview.2.24128.4" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0-preview.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DotLibrary.Application\DotLibrary.Application.csproj" />
+      <ProjectReference Include="..\DotLibrary.Domain\DotLibrary.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
