@@ -1,3 +1,4 @@
+using DotLibrary.API.Middlewares;
 using DotLibrary.Application;
 using DotLibrary.Persistence;
 
@@ -17,6 +18,12 @@ builder.Services.AddPersistenceServices(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseMiddleware<ExceptionMiddleware>();
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -26,5 +33,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
 
 app.Run();
