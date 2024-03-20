@@ -18,6 +18,8 @@ public class GetAllBooksQueryHandler: IRequestHandler<GetAllBooksQuery, List<Boo
     public async Task<List<BookDto>> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
     {
         var allBooks = await _bookRepository.GetAllAsync();
+        
+        Console.WriteLine(">>>>>>> GetAllBooksQueryHandler");
         return _mapper.Map<List<BookDto>>(allBooks);
     }
 }

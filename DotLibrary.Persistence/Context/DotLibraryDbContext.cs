@@ -14,6 +14,7 @@ public class DotLibraryDbContext: DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<BookAuthor> BookAuthors { get; set; }
     public DbSet<BookCategory> BookCategories { get; set; }
+    public DbSet<Publisher> Publishers { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -46,6 +47,11 @@ public class DotLibraryDbContext: DbContext
             .HasOne(bc => bc.Category)
             .WithMany(c => c.Books)
             .HasForeignKey(bc => bc.CategoryId);
+        
+        modelBuilder.Entity<Publisher>()
+            .HasMany(p => p.PublishedBooks)
+            .WithOne(b => b.Publisher)
+            .HasForeignKey(b => b.PublisherId);
 
         // Optionally, configure cascade delete behavior
         modelBuilder.Entity<Book>()

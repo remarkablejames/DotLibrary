@@ -1,3 +1,4 @@
+using DotLibrary.Application.Features.Book.Commands.CreateBook;
 using DotLibrary.Application.Features.Book.Queries.GetAllBooks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -32,8 +33,9 @@ namespace DotLibrary.API.Controllers
 
         // POST api/<BooksController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<int> Post([FromBody] CreateBookCommand createBookCommand)
         {
+            return await _mediator.Send(createBookCommand);
         }
 
         // PUT api/<BooksController>/5
