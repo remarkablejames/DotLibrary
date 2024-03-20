@@ -2,6 +2,7 @@ using AutoMapper;
 using DotLibrary.Application.Contracts.Persistence;
 using DotLibrary.Application.Exceptions;
 using MediatR;
+using Newtonsoft.Json;
 
 namespace DotLibrary.Application.Features.Author.Queries.GetAuthorDetails;
 
@@ -22,6 +23,11 @@ public class GetAuthorDetailsQueryHandler: IRequestHandler<GetAuthorDetailsQuery
         {
             throw new NotFoundException(nameof(Domain.Author), request.Id);
         }
-        return  _mapper.Map<AuthorDetailsDto>(author);
+        // convert the author to json and log it
+        Console.ForegroundColor = ConsoleColor.Green; // Set the text color to Green
+        Console.WriteLine(">>>>>>> Author: " + JsonConvert.SerializeObject(author));
+        Console.ResetColor(); // Reset the color to the default
+        
+        return _mapper.Map<AuthorDetailsDto>(author);
     }
 }

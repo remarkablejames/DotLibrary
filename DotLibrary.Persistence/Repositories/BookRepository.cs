@@ -14,12 +14,21 @@ public class BookRepository: GenericRepository<Book>, IBookRepository
         _context = context;
     }
     
-    public new async Task<IReadOnlyList<Book>> GetAllAsync()
+    // public new async Task<IReadOnlyList<Book>> GetAllAsync()
+    // {
+    //     var entities =  await _context.Set<Book>()
+    // .Include(b => b.BookAuthors)
+    // .Include(b => b.BookCategories)
+    // .ToListAsync();
+    //     return entities;
+    // }
+    
+    public new async Task<Book?> GetByIdAsync(int id)
     {
-        var entities =  await _context.Set<Book>()
-    .Include(b => b.BookAuthors)
-    .Include(b => b.BookCategories)
-    .ToListAsync();
-        return entities;
+        var entity = await _context.Set<Book>()
+            .Include(b => b.BookAuthors)
+            .Include(b => b.BookCategories)
+            .FirstOrDefaultAsync(b => b.Id == id);
+        return entity;
     }
 }

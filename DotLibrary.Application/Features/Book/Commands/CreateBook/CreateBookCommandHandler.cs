@@ -2,6 +2,7 @@ using AutoMapper;
 using DotLibrary.Application.Contracts.Persistence;
 using DotLibrary.Domain;
 using MediatR;
+using Newtonsoft.Json;
 using Exception = System.Exception;
 
 namespace DotLibrary.Application.Features.Book.Commands.CreateBook;
@@ -47,6 +48,10 @@ public class CreateBookCommandHandler: IRequestHandler<CreateBookCommand, int>
             }
             book.BookCategories.Add(new BookCategory { CategoryId = category.Id, BookId = book.Id });
         }
+        
+        Console.ForegroundColor = ConsoleColor.Green; // Set the text color to green
+        Console.WriteLine(">>>>>>> Book: " + JsonConvert.SerializeObject(book));
+        Console.ResetColor(); // Reset the color to the default
 
         // 4. Add the book to the repository
         book = await _bookRepository.AddAsync(book);

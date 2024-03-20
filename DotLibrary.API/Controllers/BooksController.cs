@@ -1,5 +1,6 @@
 using DotLibrary.Application.Features.Book.Commands.CreateBook;
 using DotLibrary.Application.Features.Book.Queries.GetAllBooks;
+using DotLibrary.Application.Features.Book.Queries.GetBookDetails;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -26,9 +27,9 @@ namespace DotLibrary.API.Controllers
 
         // GET api/<BooksController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<BookDetailsDto> Get(int id)
         {
-            return "value";
+            return await _mediator.Send(new GetBookDetailsQuery(id));
         }
 
         // POST api/<BooksController>
