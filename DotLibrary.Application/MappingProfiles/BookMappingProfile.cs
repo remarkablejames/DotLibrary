@@ -14,9 +14,10 @@ public class BookMappingProfile:Profile
         CreateMap<Domain.Book, CreateBookCommand>().ReverseMap();
         CreateMap<Book, BookDto>();
         
-        CreateMap<Book, BookDetailsDto>().ForMember(dest => dest.BookCategories, opt => opt.MapFrom(src => src.BookCategories.Select(bc => new BookCategoriesDto { BookId = bc.BookId, CategoryId = bc.CategoryId })))
-            .ForMember(dest => dest.BookAuthors, opt => opt.MapFrom(src => src.BookAuthors.Select(ba => new BookAuthorsDto { BookId = ba.BookId, AuthorId = ba.AuthorId })));
-
+        CreateMap<Book, BookDetailsDto>()
+            .ForMember(dest => dest.BookCategories, opt => opt.MapFrom(src => src.BookCategories.Select(bc => new BookCategoriesDto {  CategoryId = bc.CategoryId, CategoryName = bc.Category.Name})))
+            .ForMember(dest => dest.BookAuthors, opt => opt.MapFrom(src => src.BookAuthors.Select(ba => new BookAuthorsDto {  AuthorId = ba.AuthorId, AuthorName = ba.Author.Name })));
+        
     }
     
 }

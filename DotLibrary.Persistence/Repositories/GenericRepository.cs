@@ -31,9 +31,10 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return entity;
     }
 
-    public Task UpdateAsync(T entity)
+    public async Task UpdateAsync(T entity)
     {
-        throw new NotImplementedException();
+        _context.Entry(entity).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
     }
 
     public Task DeleteAsync(T entity)

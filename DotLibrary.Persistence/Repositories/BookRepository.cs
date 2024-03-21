@@ -24,11 +24,13 @@ public class BookRepository: GenericRepository<Book>, IBookRepository
     // }
     
     public new async Task<Book?> GetByIdAsync(int id)
-    {
-        var entity = await _context.Set<Book>()
-            .Include(b => b.BookAuthors)
-            .Include(b => b.BookCategories)
-            .FirstOrDefaultAsync(b => b.Id == id);
-        return entity;
-    }
+{
+    var entity = await _context.Set<Book>()
+        // .Include(b=>b.Publisher)
+        .Include(b => b.BookAuthors)
+            .ThenInclude(ba => ba.Author)
+        .Include(b => b.BookCategories).ThenInclude(bc => bc.Category)
+        .FirstOrDefaultAsync(b => b.Id == id);
+    return entity;
+}
 }
