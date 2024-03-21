@@ -6,10 +6,8 @@ public class Book
     public string Title { get; set; } = String.Empty;
     public string ISBN { get; set; } = String.Empty;
     // Foreign Key property
-    public int PublisherId { get; set; }
-    
     // Navigation property to represent the relationship
-    public Publisher Publisher { get; set; } = new Publisher();
+    public string Publisher { get; set; } = String.Empty;
     
     public List<BookAuthor> BookAuthors { get; set; } = new List<BookAuthor>();
     public List<BookCategory> BookCategories { get; set; } = new List<BookCategory>();

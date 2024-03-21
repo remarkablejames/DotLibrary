@@ -14,7 +14,6 @@ public class DotLibraryDbContext: DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<BookAuthor> BookAuthors { get; set; }
     public DbSet<BookCategory> BookCategories { get; set; }
-    public DbSet<Publisher> Publishers { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -22,11 +21,11 @@ public class DotLibraryDbContext: DbContext
         modelBuilder.Entity<BookCategory>().HasKey(bg => new { bg.BookId, bg.CategoryId });
         
         // Configure relationships
-        modelBuilder.Entity<Book>()
-            .HasOne(b => b.Publisher)
-            .WithMany(p => p.PublishedBooks)
-            .HasForeignKey(b => b.PublisherId)
-            .IsRequired();
+        // modelBuilder.Entity<Book>()
+        //     .HasOne(b => b.Publisher)
+        //     .WithMany(p => p.PublishedBooks)
+        //     .HasForeignKey(b => b.PublisherId)
+        //     .IsRequired();
         
         modelBuilder.Entity<BookAuthor>().HasKey(ba=> new { ba.BookId, ba.AuthorId });
         
@@ -52,17 +51,17 @@ public class DotLibraryDbContext: DbContext
             .WithMany(c => c.Books)
             .HasForeignKey(bc => bc.CategoryId);
         
-        modelBuilder.Entity<Publisher>()
-            .HasMany(p => p.PublishedBooks)
-            .WithOne(b => b.Publisher)
-            .HasForeignKey(b => b.PublisherId);
+        // modelBuilder.Entity<Publisher>()
+        //     .HasMany(p => p.PublishedBooks)
+        //     .WithOne(b => b.Publisher)
+        //     .HasForeignKey(b => b.PublisherId);
 
         // Optionally, configure cascade delete behavior
-        modelBuilder.Entity<Book>()
-            .HasOne(b => b.Publisher)
-            .WithMany(p => p.PublishedBooks)
-            .HasForeignKey(b => b.PublisherId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // modelBuilder.Entity<Book>()
+        //     .HasOne(b => b.Publisher)
+        //     .WithMany(p => p.PublishedBooks)
+        //     .HasForeignKey(b => b.PublisherId)
+        //     .OnDelete(DeleteBehavior.Cascade);
     }
     
 }

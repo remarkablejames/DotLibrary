@@ -2,6 +2,7 @@
 using DotLibrary.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DotLibrary.Persistence.Migrations
 {
     [DbContext(typeof(DotLibraryDbContext))]
-    partial class DotLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240321090644_Removed Publisher entity")]
+    partial class RemovedPublisherentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,11 +57,16 @@ namespace DotLibrary.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("PublisherId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
                 });
@@ -108,6 +116,30 @@ namespace DotLibrary.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("DotLibrary.Domain.Publisher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Publishers");
+                });
+
+            modelBuilder.Entity("DotLibrary.Domain.Book", b =>
+                {
+                    b.HasOne("DotLibrary.Domain.Publisher", null)
+                        .WithMany("PublishedBooks")
+                        .HasForeignKey("PublisherId");
                 });
 
             modelBuilder.Entity("DotLibrary.Domain.BookAuthor", b =>
@@ -163,6 +195,11 @@ namespace DotLibrary.Persistence.Migrations
             modelBuilder.Entity("DotLibrary.Domain.Category", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("DotLibrary.Domain.Publisher", b =>
+                {
+                    b.Navigation("PublishedBooks");
                 });
 #pragma warning restore 612, 618
         }
